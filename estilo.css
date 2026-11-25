@@ -1,0 +1,160 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+html, body, .stApp, button, input, select, textarea {font-family: 'Montserrat', sans-serif;}
+.stApp * {font-variant-numeric: tabular-nums;}
+header[data-testid="stHeader"], [data-testid="stToolbar"], [data-testid="stDecoration"], footer {display: none !important;}
+[data-testid="stMainBlockContainer"] {max-width: 1184px; padding: 0 32px 80px;}
+
+/* Encabezado con navegación */
+.st-key-encabezado {background: #FFFFFF; box-shadow: 0 0 0 100vmax #FFFFFF; clip-path: inset(0 -100vmax);
+                    position: relative; margin-bottom: 16px;}
+.st-key-encabezado::after {content: ""; position: absolute; left: -100vmax; right: -100vmax; bottom: 0;
+                           height: 1px; background: #E2DDD3;}
+.marca {height: 62px; transform: translateY(-8px); display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; color: #1C2B33;}
+.marca .logo {width: 30px; height: 30px; border-radius: 8px; background: #0E4F5C; color: #FFFFFF;
+              display: inline-flex; align-items: center; justify-content: center; font-size: 16px;}
+.st-key-encabezado [data-testid="stElementContainer"], .st-key-encabezado [data-testid="stRadio"] {width: 100%;}
+.st-key-encabezado div[role="radiogroup"] {gap: 2px; justify-content: flex-end; flex-wrap: wrap; width: 100%;}
+.st-key-encabezado [data-testid="stRadioOption"] {margin: 0; padding: 20px 14px 18px; cursor: pointer;
+                                                 border-bottom: 2px solid transparent;}
+.st-key-encabezado [data-testid="stRadioOption"] > div > div:first-child {display: none;}
+.st-key-encabezado [data-testid="stRadioOption"] p {font-size: 14px; font-weight: 500; color: #56656D;}
+.st-key-encabezado [data-testid="stRadioOption"][data-selected="true"] {border-bottom-color: #0E4F5C;}
+.st-key-encabezado [data-testid="stRadioOption"][data-selected="true"] p {color: #0E4F5C; font-weight: 600;}
+div[data-testid="stElementContainer"]:has(style) {display: none;}
+
+/* Texto */
+div[data-testid="stMarkdownContainer"] .titulo {padding: 0; font-size: 34px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; color: #1C2B33;
+         margin: 16px 0 6px;}
+div[data-testid="stMarkdownContainer"] .seccion {padding: 0; font-size: 24px; font-weight: 600; line-height: 1.25; color: #1C2B33; margin: 28px 0 10px;}
+div[data-testid="stMarkdownContainer"] .subseccion {padding: 0; font-size: 20px; font-weight: 600; color: #1C2B33; margin: 0 0 6px;}
+div[data-testid="stMarkdownContainer"] .texto {color: #36454D; font-size: 15px; line-height: 1.6; max-width: 860px; margin: 0 0 14px;}
+div[data-testid="stMarkdownContainer"] .nota {color: #56656D; font-size: 13px; line-height: 1.5; margin: 8px 0 0;}
+.etiqueta {font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #0E4F5C;}
+.fila-titulo {display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+              gap: 6px 24px; margin: 28px 0 14px;}
+div[data-testid="stMarkdownContainer"] .fila-titulo .seccion {margin: 0;}
+.fila-titulo > span {font-size: 14px; color: #56656D;}
+
+/* Tarjetas */
+.tarjeta {background: #FFFFFF; border: 1px solid #E2DDD3; border-radius: 16px; padding: 32px 36px;}
+div[data-testid="stMarkdownContainer"] .tarjeta h1 {font-size: 36px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; margin: 6px 0 0;
+             padding: 0; color: #1C2B33;}
+.campos {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 32px;
+         border-top: 1px solid #ECE8E0; padding-top: 22px; margin-top: 24px;}
+.campo {display: flex; flex-direction: column; gap: 2px; font-weight: 500;}
+.campo span:first-child {font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: #56656D;}
+.dos-columnas {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 48px;}
+div[data-testid="stMarkdownContainer"] .dos-columnas .seccion {margin-top: 8px;}
+.cifras {display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;}
+.cifras.dos {grid-template-columns: repeat(2, minmax(0, 1fr));}
+.cifra {background: #FFFFFF; border: 1px solid #E2DDD3; border-radius: 14px; padding: 20px 22px;
+        display: flex; flex-direction: column; gap: 4px;}
+.cifra .rotulo, .cifra .detalle {font-size: 13px; color: #56656D;}
+.cifra .rotulo {font-weight: 500; display: flex; align-items: center; gap: 8px;}
+.cifra .valor {font-size: 32px; font-weight: 600; line-height: 1.15; color: #1C2B33;}
+.punto {width: 10px; height: 10px; border-radius: 50%; display: inline-block;}
+.lista-modelos article {display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px 16px;
+                        padding: 22px 0; border-top: 1px solid #E2DDD3;}
+.lista-modelos article:last-child {border-bottom: 1px solid #E2DDD3;}
+.lista-modelos .num {font-size: 14px; font-weight: 600; color: #0E4F5C; padding-top: 4px;}
+div[data-testid="stMarkdownContainer"] .lista-modelos h3 {font-size: 21px; font-weight: 600; margin: 0 0 4px; padding: 0; color: #1C2B33;}
+.lista-modelos .sub {font-size: 13px; color: #56656D; margin-bottom: 6px;}
+div[data-testid="stMarkdownContainer"] .lista-modelos p {margin: 0; color: #36454D; max-width: 860px; line-height: 1.6;}
+.tres {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;}
+div[data-testid="stMarkdownContainer"] .tres .cifra h3, div[data-testid="stMarkdownContainer"] .dos-tarjetas .cifra h3 {font-size: 19px; font-weight: 600; margin: 0; padding: 0; color: #1C2B33;}
+div[data-testid="stMarkdownContainer"] .tres .cifra p, div[data-testid="stMarkdownContainer"] .dos-tarjetas .cifra p {margin: 0; font-size: 14px; color: #36454D; line-height: 1.6;}
+.dos-tarjetas {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;}
+div[data-testid="stMarkdownContainer"] .lista {margin: 0; padding-left: 22px; color: #36454D; max-width: 860px; line-height: 1.6;}
+.lista li {margin-bottom: 8px;}
+
+/* Tablas */
+.marco {background: #FFFFFF; border: 1px solid #E2DDD3; border-radius: 16px; overflow-x: auto;}
+div[data-testid="stMarkdownContainer"] table.tabla {width: 100%; border-collapse: collapse; font-size: 15px;
+                                                    margin: 0; border: 0;}
+div[data-testid="stMarkdownContainer"] table.tabla th {text-align: left; padding: 14px 24px; font-size: 12px;
+    font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #56656D; background: #FAF8F4;
+    border: 0; border-bottom: 1px solid #E2DDD3;}
+div[data-testid="stMarkdownContainer"] table.tabla td {padding: 14px 24px; border: 0;
+                                                       border-bottom: 1px solid #ECE8E0; color: #1C2B33;}
+div[data-testid="stMarkdownContainer"] table.tabla tr:last-child td {border-bottom: 0;}
+div[data-testid="stMarkdownContainer"] table.tabla .der {text-align: right;}
+div[data-testid="stMarkdownContainer"] table.tabla .fuerte {font-weight: 600; white-space: nowrap;}
+div[data-testid="stMarkdownContainer"] code {background: #ECE8E0; color: #1C2B33; padding: 1px 6px; border-radius: 4px;}
+div[data-testid="stMarkdownContainer"] table.tabla .sec {color: #56656D;}
+div[data-testid="stMarkdownContainer"] table.tabla .mejor {font-weight: 700; color: #0E4F5C;}
+div[data-testid="stMarkdownContainer"] table.compacta td, div[data-testid="stMarkdownContainer"] table.compacta th {
+    padding-left: 14px; padding-right: 14px; font-size: 14px;}
+div[data-testid="stMarkdownContainer"] table.compacta th {font-size: 12px;}
+.clase {display: inline-flex; align-items: center; gap: 8px; font-weight: 600;}
+.clase::before {content: ""; width: 10px; height: 10px; border-radius: 50%;}
+.clase.cn {color: #1A5E77;} .clase.cn::before {background: #1F6F8B;}
+.clase.dem {color: #A8461F;} .clase.dem::before {background: #C4572F;}
+.muestra {display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px;}
+
+/* Avisos */
+.aviso {display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; border-radius: 12px;
+        border: 1px solid; margin: 0 0 16px; line-height: 1.5;}
+.aviso svg {flex: none; margin-top: 1px;}
+.aviso.ok {background: #E6F1EE; border-color: #B9D8CF; color: #1E4D41;}
+.aviso.alerta {background: #FBF1E3; border-color: #EBCB9E; color: #6B4410;}
+.aviso.error {background: #FBEAE4; border-color: #E9B7A4; color: #7A2E14;}
+
+/* Gráfica de probabilidades */
+.figura {background: #FFFFFF; border: 1px solid #E2DDD3; border-radius: 16px; padding: 24px 28px; margin-top: 16px;}
+.figura .cabeza {display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+                 gap: 8px 24px; margin-bottom: 18px;}
+.figura .cabeza b {font-size: 18px; font-weight: 600;}
+.leyenda {display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: #56656D;}
+.leyenda span {display: inline-flex; align-items: center; gap: 6px;}
+.leyenda i {display: inline-block; width: 12px; height: 12px; border-radius: 3px;}
+.leyenda i.linea {width: 3px; height: 14px; border-radius: 1px; background: #1C2B33;}
+.barras {display: flex; flex-direction: column; gap: 14px;}
+.barras .fila {display: grid; grid-template-columns: 160px minmax(0, 1fr) 64px; gap: 14px; align-items: center;
+               font-size: 14px;}
+.barras .fila > span:first-child {font-weight: 500;}
+.barras .fila > span:last-child {text-align: right;}
+.pista {position: relative; height: 24px; background: #EFEBE3; border-radius: 6px;}
+.pista .barra {height: 100%; border-radius: 6px;}
+.pista .corte {position: absolute; top: -5px; width: 3px; height: 34px; background: #1C2B33; border-radius: 2px;
+               transform: translateX(-1.5px);}
+.eje {display: flex; justify-content: space-between; font-size: 12px; color: #56656D;}
+
+/* Matrices de confusión */
+.matriz-tarjeta {background: #FFFFFF; border: 1px solid #E2DDD3; border-radius: 16px; padding: 20px 22px;}
+.matriz-tarjeta b {font-size: 18px; font-weight: 600; display: block; margin-bottom: 12px;}
+.matriz {display: grid; grid-template-columns: 84px minmax(0, 1fr) minmax(0, 1fr); gap: 6px; font-size: 12px;}
+.matriz .eti {color: #56656D; font-weight: 500; align-self: center;}
+.matriz .eti.col {text-align: center;}
+.celda {height: 82px; border-radius: 10px; display: flex; flex-direction: column; align-items: center;
+        justify-content: center;}
+.celda strong {font-size: 22px; font-weight: 600;}
+
+/* Widgets */
+.st-key-origen, [data-testid="stForm"], .st-key-grafica {background: #FFFFFF; border: 1px solid #E2DDD3 !important;
+                                                          border-radius: 16px; padding: 24px 28px;}
+[data-testid="stForm"] {padding: 28px;}
+[data-testid="stWidgetLabel"] p {font-size: 13px; font-weight: 500; color: #36454D;}
+[data-testid="stNumberInputStepUp"], [data-testid="stNumberInputStepDown"] {display: none;}
+.encabezado-tabla {font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+                   color: #56656D;}
+.estructura {font-size: 14px; font-weight: 500; min-height: 40px; display: flex; align-items: center;}
+.stButton button, .stFormSubmitButton button {font-weight: 600; min-height: 44px;}
+.stFormSubmitButton button {min-height: 50px; font-size: 16px;}
+.stFormSubmitButton button:hover {background: #0A3D47; border-color: #0A3D47; color: #FFFFFF;}
+[data-testid="stFileUploaderDropzone"] {background: #FAF8F4; border: 1px dashed #C9C2B4; padding: 8px 8px 8px 16px;}
+[data-testid="stFileUploaderDropzone"] {flex-direction: row-reverse; justify-content: space-between;
+                                          align-items: center;}
+[data-testid="InputInstructions"] {display: none;}
+[data-testid="stFileUploaderDropzoneInstructions"] > div > span {font-size: 0;}
+[data-testid="stFileUploaderDropzoneInstructions"] > div > span::after {content: "Arrastra un CSV con una o más personas";
+    font-size: 14px; color: #56656D;}
+[data-testid="stFileUploaderDropzoneInstructions"] > div > small, [data-testid="stFileUploaderDropzoneInstructions"] svg,
+[data-testid="stFileUploaderDropzone"] button span:has(> [data-testid="stIconMaterial"]) {display: none;}
+[data-testid="stFileUploaderDropzone"] button > div > span {gap: 0;}
+[data-testid="stFileUploaderDropzone"] button {min-height: 36px; margin: 0; align-self: center; gap: 0;
+                                                display: inline-flex; align-items: center; justify-content: center;}
+[data-testid="stFileUploaderDropzone"] button p {font-size: 0;}
+[data-testid="stFileUploaderDropzone"] button p::after {content: "Buscar archivo"; font-size: 14px;}
+[data-testid="stFileUploaderDropzoneInstructions"] {flex: 1; white-space: nowrap;}
+.st-key-origen .stButton button {min-height: 40px;}
