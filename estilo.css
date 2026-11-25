@@ -158,3 +158,44 @@ div[data-testid="stMarkdownContainer"] table.compacta th {font-size: 12px;}
 [data-testid="stFileUploaderDropzone"] button p::after {content: "Buscar archivo"; font-size: 14px;}
 [data-testid="stFileUploaderDropzoneInstructions"] {flex: 1; white-space: nowrap;}
 .st-key-origen .stButton button {min-height: 40px;}
+
+/* Tema claro forzado: no depende de .streamlit/config.toml ni del modo oscuro del navegador */
+:root, .stApp {color-scheme: light !important;}
+html, body, .stApp, [data-testid="stApp"], [data-testid="stAppViewContainer"], [data-testid="stMain"],
+[data-testid="stMainBlockContainer"], [data-testid="stHeader"], section.main {background-color: #F5F3EE !important;}
+.stApp, .stApp [data-testid="stMarkdownContainer"], .stApp [data-testid="stWidgetLabel"], .stApp label,
+.stApp [data-testid="stMarkdownContainer"] p, .stApp [data-testid="stMarkdownContainer"] li,
+.stApp [data-testid="stRadio"] p, .stApp [data-testid="stSelectbox"] div, .stApp [data-testid="stMultiSelect"] div {color: #1C2B33;}
+.campo span:last-child {color: #1C2B33 !important;}
+/* Campos de captura y listas desplegables */
+[data-baseweb="select"] > div, [data-baseweb="input"], [data-baseweb="input"] > div, [data-baseweb="base-input"],
+.stApp input, .stApp textarea, [data-testid="stNumberInputContainer"] {
+    background-color: #FFFFFF !important; color: #1C2B33 !important; -webkit-text-fill-color: #1C2B33 !important;
+    border-color: #D6D0C4 !important;}
+[data-baseweb="select"] div, .stSelectbox [role="group"], .stMultiSelect [role="group"],
+.stSelectbox [role="group"] button, .stMultiSelect [role="group"] button {background-color: #FFFFFF !important;
+    color: #1C2B33 !important; border-color: #D6D0C4 !important;}
+.stSelectbox [role="group"] svg, .stMultiSelect [role="group"] svg {color: #56656D !important; fill: #56656D !important;}
+[data-baseweb="select"] svg {fill: #56656D !important; color: #56656D !important;}
+[data-baseweb="popover"], [data-baseweb="popover"] > div, [data-baseweb="menu"], [data-baseweb="popover"] ul,
+[data-baseweb="popover"] li, [role="listbox"], [role="option"] {background-color: #FFFFFF !important; color: #1C2B33 !important;}
+[role="option"]:hover, [role="option"][aria-selected="true"] {background-color: #EEF4F4 !important;}
+[data-baseweb="select"] [data-baseweb="tag"], [data-baseweb="tag"] {background-color: #0E4F5C !important;}
+[data-baseweb="tag"] div, [data-baseweb="tag"] span {background-color: transparent !important; color: #FFFFFF !important;}
+[data-baseweb="tag"] span {color: #FFFFFF !important;}
+/* Sliders y radios */
+[data-testid="stSlider"] [role="slider"] {background-color: #0E4F5C !important; border-color: #0E4F5C !important;}
+[data-testid="stSliderThumbValue"], [data-testid="stSliderTickBarMin"], [data-testid="stSliderTickBarMax"] {color: #1C2B33 !important;}
+[data-testid="stRadio"] label div:first-child {border-color: #56656D;}
+/* Botones */
+.stButton button, .stDownloadButton button {background-color: #FFFFFF !important; color: #1C2B33 !important;
+    border: 1px solid #C9C2B4 !important;}
+.stButton button p, .stDownloadButton button p {color: #1C2B33 !important;}
+.stFormSubmitButton button {background-color: #0E4F5C !important; border-color: #0E4F5C !important;}
+.stFormSubmitButton button, .stFormSubmitButton button p {color: #FFFFFF !important;}
+[data-testid="stForm"] {background-color: #FFFFFF !important;}
+/* Elementos con fondo oscuro propio: texto claro */
+.cifra.destacada .valor, .marca .logo {color: #FFFFFF !important;}
+.cifra.destacada .rotulo, .cifra.destacada .detalle, .cifra.destacada span {color: #CFE2E5 !important;}
+.cifra.destacada .valor {color: #FFFFFF !important;}
+
