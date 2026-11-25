@@ -16,7 +16,6 @@ import statsmodels.formula.api as smf
 import streamlit as st
 from scipy import stats
 from statsmodels.stats.libqsturng import qsturng
-from statsmodels.stats.oneway import anova_oneway
 
 st.set_page_config(page_title='FastTrack Logistics · Consumo de combustible', layout='wide')
 
@@ -99,10 +98,7 @@ def anova(df, col):
     F = msa / mse
     return dict(SSA=ssa, SSE=sse, SST=sst, MSA=msa, MSE=mse, F=F, p=stats.f.sf(F, k - 1, n - k),
                 Fc=stats.f.ppf(1 - ALPHA, k - 1, n - k), eta2=ssa / sst,
-                levene=stats.levene(*grupos).pvalue,
-                shapiro={r: stats.shapiro(g).pvalue for r, g in zip(RUTAS, grupos)},
-                welch=anova_oneway(df[col], df.Tipo_Ruta, use_var='unequal').pvalue,
-                kruskal=stats.kruskal(*grupos).pvalue)
+                levene=stats.levene(*grupos).pvalue)
 
 
 def tukey(df, col, mse):
@@ -206,7 +202,7 @@ if seccion == 'Proyecto':
     <h2 class="seccion" style="margin-top: 48px">Metodología</h2>
     <div class="lista-modelos">
       <article><span class="num">01</span><div><h3>Análisis exploratorio y ANOVA</h3>
-        <div class="sub">Estadística descriptiva · ANOVA de un factor · Levene, Shapiro-Wilk, Welch, Kruskal-Wallis · Tukey-Kramer</div>
+        <div class="sub">Estadística descriptiva · ANOVA de un factor · Levene · Tukey-Kramer</div>
         <p>Se comparan las medias de consumo, peso y velocidad entre los tres tipos de ruta y se identifica qué pares difieren.</p></div></article>
       <article><span class="num">02</span><div><h3>Correlación de Pearson</h3>
         <div class="sub">Matriz de correlación · prueba t de significancia</div>
@@ -325,15 +321,6 @@ elif seccion == 'ANOVA':
                           'Valor p': [a['p'], np.nan, np.nan]}, index=['Entre rutas', 'Dentro (error)', 'Total'])
     html('<div class="fila-titulo"><h2 class="seccion">Tabla ANOVA</h2>'
          f'<span>{NOMBRE[var]}</span></div>' + tabla_html(tabla).replace('>nan<', '>—<'))
-    html(f"""
-    <div class="fila-titulo"><h2 class="seccion">Supuestos y pruebas robustas</h2></div>
-    <div class="marco"><table class="tabla compacta"><thead><tr><th>Prueba</th><th>Qué verifica</th><th class="der">Valor p</th><th>Lectura</th></tr></thead><tbody>
-    {''.join(f"<tr><td class='fuerte'>Shapiro-Wilk · {r}</td><td>Normalidad del grupo</td><td class='der'>{p:.4f}</td><td>{'Normal' if p > ALPHA else 'No normal'}</td></tr>" for r, p in a['shapiro'].items())}
-    <tr><td class="fuerte">Levene</td><td>Homogeneidad de varianzas</td><td class="der">{a['levene']:.4f}</td><td>{'Se cumple' if a['levene'] > ALPHA else 'No se cumple'}</td></tr>
-    <tr><td class="fuerte">ANOVA de Welch</td><td>No supone varianzas iguales</td><td class="der">{fmt_p(a['welch'])}</td><td>{'Confirma' if a['welch'] < ALPHA else 'No confirma'} el resultado</td></tr>
-    <tr><td class="fuerte">Kruskal-Wallis</td><td>No supone normalidad</td><td class="der">{fmt_p(a['kruskal'])}</td><td>{'Confirma' if a['kruskal'] < ALPHA else 'No confirma'} el resultado</td></tr>
-    </tbody></table></div>
-    """)
 
     resumen = pd.DataFrame({NOMBRE[c]: {'F': an[c]['F'], 'Valor p': an[c]['p'], 'η²': an[c]['eta2'],
                                         'Levene (p)': an[c]['levene'],
@@ -552,7 +539,7 @@ elif seccion == 'Decisiones':
       y {ta.intercept + 25 * ta.slope:.1f} L en autopista. Las cargas pesadas deben asignarse a autopista cuando exista la alternativa.</p></div>
     <div class="pregunta"><h3>2. ¿En qué tipo de ruta se gasta más combustible y la diferencia es significativa?</h3>
       <p class="resp">En Montaña ({medias_y['Montaña']:.2f} L); la diferencia es significativa.</p>
-      <p>ANOVA: F = {an[Y]['F']:.2f}, p = {fmt_p(an[Y]['p'])}, confirmado por Welch y Kruskal-Wallis. Según Tukey, Montaña
+      <p>ANOVA: F = {an[Y]['F']:.2f}, p = {fmt_p(an[Y]['p'])}. Según Tukey, Montaña
       difiere de Autopista ({medias_y['Autopista']:.2f} L) y de Urbana ({medias_y['Urbana']:.2f} L), que no difieren entre sí.</p></div>
     <div class="pregunta"><h3>3. Para reducir el consumo, ¿controlar la velocidad o reducir el peso?</h3>
       <p class="resp">Reducir el peso de carga.</p>
